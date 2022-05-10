@@ -9,6 +9,7 @@
 # INSTRUCTORS: set the `upstream_repo` variable with your instructor repo.
 # The script uses this value to set it as an upstream for the student.
 # The URL should look something like: "https://git.techelevator.com/campuses/nlr/jan-2022/java-green/instructor-code"
+# https://git.techelevator.com/campuses/nlr/may-2022/java-purple/instructor-code.git
 
 upstream_repo="UPSTREAM_REPO_URL_HERE"
 
@@ -31,7 +32,7 @@ git config --global difftool.code.cmd "code -w -d \$LOCAL \$REMOTE"
 echo
 echo "Configuring Upstream..."
 
-git remote add upstream "${upstream_repo}"
+git remote add upstream "${https://git.techelevator.com/campuses/nlr/may-2022/java-purple/instructor-code}"
 git config branch.main.mergeOptions "--no-edit"
 
 echo "Done."
