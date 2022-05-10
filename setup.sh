@@ -11,7 +11,7 @@
 # The URL should look something like: "https://git.techelevator.com/campuses/nlr/jan-2022/java-green/instructor-code"
 # https://git.techelevator.com/campuses/nlr/may-2022/java-purple/instructor-code.git
 
-upstream_repo="UPSTREAM_REPO_URL_HERE"
+upstream_repo="https://git.techelevator.com/campuses/nlr/may-2022/java-purple/instructor-code"
 
 echo
 read -r -p "Enter your name (First Last): " name
@@ -32,7 +32,7 @@ git config --global difftool.code.cmd "code -w -d \$LOCAL \$REMOTE"
 echo
 echo "Configuring Upstream..."
 
-git remote add upstream "${https://git.techelevator.com/campuses/nlr/may-2022/java-purple/instructor-code}"
+git remote add upstream "${upstream_repo}"
 git config branch.main.mergeOptions "--no-edit"
 
 echo "Done."
