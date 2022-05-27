@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 public class Lecture {
 
 	public static void main(String[] args) {
@@ -15,12 +17,44 @@ public class Lecture {
 
 		/* create an new instance of String using a literal */
 
+		String myString = "hello world";
+		String myString2 = new String ( "Hello world"); //you'll rarely use this
+
 		
 		System.out.println();
 		System.out.println("******************************");
 		System.out.println("****** MEMBER METHODS ******");
 		System.out.println("******************************");
 		System.out.println();
+
+		System.out.println(myString.length());
+		System.out.println(myString.substring(6));// basically everything from 7 forward
+		System.out.println(myString.substring(6,7));
+		System.out.println(myString.substring(6,myString.length()-1)); //return the string
+
+		System.out.println(myString.indexOf("wor"));
+		System.out.println(myString.indexOf("xx"));
+		System.out.println(myString.indexOf("hello"));
+		System.out.println(myString.toLowerCase().indexOf("hello"));
+		System.out.println(myString.toUpperCase());
+
+		System.out.println(myString.charAt(6)); //return the character
+		System.out.println(myString.contains("hello"));
+		System.out.println(myString.contains("Hello"));
+
+		System.out.println(myString.startsWith("He"));
+
+		String myString3 = myString.replace("Hello", "goodbye");
+		System.out.println(myString3);
+		System.out.println(myString);
+
+		System.out.println(myString == myString2);
+		System.out.println(myString.equals(myString2));
+		System.out.println(myString.equalsIgnoreCase(myString2));
+		System.out.println(myString.compareTo(myString2));
+
+
+
 
 
 		/* Other commonly used methods:
@@ -35,37 +69,37 @@ public class Lecture {
 		 * toUpperCase
 		 * trim
 		 */
-
-		System.out.println();
-		System.out.println("**********************");
-		System.out.println("****** EQUALITY ******");
-		System.out.println("**********************");
-		System.out.println();
-
-        char[] helloArray = new char[] { 'H', 'e', 'l', 'l', 'o' };
-        String hello1 = new String(helloArray);
-        String hello2 = new String(helloArray);
-
-		/* Double equals will compare to see if the two variables, hello1 and
-		 * hello2 point to the same object in memory. Are they the same object? */
-		if (hello1 == hello2) {
-			System.out.println("They are equal!");
-		} else {
-			System.out.println(hello1 + " is not equal to " + hello2);
-		}
-
-		String hello3 = hello1;
-		if (hello1 == hello3) {
-			System.out.println("hello1 is the same reference as hello3");
-		}
-
-		/* So, to compare the values of two objects, we need to use the equals method.
-		 * Every object type has an equals method */
-		if (hello1.equals(hello2)) {
-			System.out.println("They are equal!");
-		} else {
-			System.out.println(hello1 + " is not equal to " + hello2);
-		}
-
+//
+//		System.out.println();
+//		System.out.println("**********************");
+//		System.out.println("****** EQUALITY ******");
+//		System.out.println("**********************");
+//		System.out.println();
+//
+//        char[] helloArray = new char[] { 'H', 'e', 'l', 'l', 'o' };
+//        String hello1 = new String(helloArray);
+//        String hello2 = new String(helloArray);
+//
+//		/* Double equals will compare to see if the two variables, hello1 and
+//		 * hello2 point to the same object in memory. Are they the same object? */
+//		if (hello1 == hello2) {
+//			System.out.println("They are equal!");
+//		} else {
+//			System.out.println(hello1 + " is not equal to " + hello2);
+//		}
+//
+//		String hello3 = hello1;
+//		if (hello1 == hello3) {
+//			System.out.println("hello1 is the same reference as hello3");
+//		}
+//
+//		/* So, to compare the values of two objects, we need to use the equals method.
+//		 * Every object type has an equals method */
+//		if (hello1.equals(hello2)) {
+//			System.out.println("They are equal!");
+//		} else {
+//			System.out.println(hello1 + " is not equal to " + hello2);
+//		}
+//
 	}
 }

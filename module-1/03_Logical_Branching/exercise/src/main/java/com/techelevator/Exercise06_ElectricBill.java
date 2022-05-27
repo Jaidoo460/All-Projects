@@ -24,6 +24,12 @@ public class Exercise06_ElectricBill {
     calculateElectricBill(110) ➔ 22.5
      */
     public double calculateElectricBill(double unitsUsed) {
+        double excessUnitsUsed = unitsUsed - EXCESS_UNITS_LIMIT;
+        if ( unitsUsed <= EXCESS_UNITS_LIMIT) {
+            return (unitsUsed * BASE_RATE);
+        }else if (unitsUsed > EXCESS_UNITS_LIMIT){
+            return (excessUnitsUsed) * EXCESS_RATE * (unitsUsed - excessUnitsUsed) * BASE_RATE;
+        }
         return 0;
     }
 
@@ -49,7 +55,8 @@ public class Exercise06_ElectricBill {
     - The first 100 units are $0.20 per unit.
     - Anything more than 100 units is calculated at a cost of $0.25 per unit.
     - Any customer who puts electricity back into the grid receives a 5% discount.
-    - If a customer returns more energy than they've used, they receive a credit of $0.20 per unit for each returned unit.
+    - If a customer returns more energy than they've used, they receive a credit of $0.20 per unit for each returned unit
+        in excess of their used units (or the net usage).
       Their credit does not include the 5% discount.
 
     Implement the logic to calculate a customer's bill when provided with a number of units used and units returned.

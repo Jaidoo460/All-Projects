@@ -24,7 +24,12 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3) ➔ 269.97
      */
     public double calculateStayTotal(int numberOfNights) {
-        return 0;
+        if (numberOfNights >= MINIMUM_NIGHTS_FOR_DISCOUNT_RATE) {
+            return (numberOfNights * DISCOUNT_RATE);
+        }
+        return (numberOfNights * DAILY_RATE);
+
+
     }
 
     /*
@@ -42,12 +47,21 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3, 2) ➔ 289.97
      */
     public double calculateStayTotal(int numOfTotalNights, int numOfWeekendNights) {
+        if (numOfTotalNights > 0 && numOfTotalNights < MINIMUM_NIGHTS_FOR_DISCOUNT_RATE && numOfWeekendNights >= 0) {
+            return (numOfTotalNights * DAILY_RATE);
+        } else if (numOfTotalNights >= MINIMUM_NIGHTS_FOR_DISCOUNT_RATE && numOfWeekendNights > 0) {
+            return ((numOfTotalNights - numOfWeekendNights) * DISCOUNT_RATE) + (numOfWeekendNights * DAILY_RATE);
+        } else if (numOfTotalNights >= MINIMUM_NIGHTS_FOR_DISCOUNT_RATE && numOfWeekendNights == 0){
+            return (numOfTotalNights * DISCOUNT_RATE);
+
+        }
         return 0;
     }
 
     /*
     Innovator's Inn continues to grow in popularity and now offers a rewards program to its customers.
-    If a guest is a member of the rewards program, they get a rate of $89.99 per night regardless of the number of nights and weekends.
+    If a guest is a member of the rewards program, they get a rate of $89.99 per night regardless of the number of
+    nights and weekends.
     Otherwise, the rates for weekday and weekend nights apply as described in the previous problem.
     Now implement the logic to return the total amount of a guest's stay based on
     the total number of nights, the number of weekend nights, and if the guest is a member of the rewards program.
@@ -60,6 +74,20 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3, 1, true) ➔ 269.97
      */
     public double calculateStayTotal(int numOfTotalNights, int numOfWeekendNights, boolean isRewardsMember) {
+        if (numOfTotalNights >= 0 && numOfWeekendNights >= 0 && isRewardsMember == true) {
+            return (numOfTotalNights * DISCOUNT_RATE);
+
+        } else if (numOfTotalNights >= MINIMUM_NIGHTS_FOR_DISCOUNT_RATE && numOfWeekendNights == 0 && isRewardsMember == false) {
+            return (numOfTotalNights * DISCOUNT_RATE);
+
+        } else if (numOfTotalNights >= MINIMUM_NIGHTS_FOR_DISCOUNT_RATE && numOfWeekendNights >= 1 && isRewardsMember == false) {
+            return ((numOfTotalNights - numOfWeekendNights) * DISCOUNT_RATE) + (numOfWeekendNights * DAILY_RATE);
+
+        } else if (numOfWeekendNights >= 0 && numOfTotalNights <= 2 && isRewardsMember == false) {
+            return (numOfTotalNights * DAILY_RATE);
+        }
         return 0;
     }
 }
+
+

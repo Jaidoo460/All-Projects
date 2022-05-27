@@ -43,7 +43,11 @@ public class Exercise01_StoreOrders {
 	 createOrder() → [10, 40, 31, 41]
      */
     public int[] createOrder() {
-        return new int[] {};
+//        int[] x = new int[2];
+//        x[0] = 10;
+//        x[1] = 20;
+        int[] name = new int[] {SMALL_CHEESE, CALZONE, LARGE_PEPPERONI, SPAGHETTI_PIE};
+        return name;
     }
 
     /*
@@ -53,12 +57,18 @@ public class Exercise01_StoreOrders {
     array representing each item that her customers ordered that day.
 
     Examples:
-    getCalzoneSales([40, 30, 31, 40, 10]) → 2
+    getCalzoneSales([40, 30, 31, 40, 10]) → 0
     getCalzoneSales([30, 31, 10]) → 0
     getCalzoneSales([]) → 0
      */
     public int getCalzoneSales(int[] orders) {
-        return 0;
+        int count = 0;
+        for(int i = 0; i < orders.length; i++){
+            if (orders[i]== CALZONE){
+                count = count+1;
+            }
+        }
+        return count;
     }
 
     /*
@@ -76,6 +86,18 @@ public class Exercise01_StoreOrders {
     getCheesePizzaRevenue([11, 21]) → 0
      */
     public int getCheesePizzaRevenue(int[] orders) {
-        return 0;
+        int amount = 0;
+        for(int i = 0; i < orders.length; i++){
+            if(orders[i]==SMALL_CHEESE){
+                amount = amount+8;
+            }
+            if(orders[i]==MEDIUM_CHEESE){
+                amount = amount+11;
+            }
+            if(orders[i]==LARGE_CHEESE){
+                amount = amount+14;
+            }
+        }
+        return amount;
     }
 }

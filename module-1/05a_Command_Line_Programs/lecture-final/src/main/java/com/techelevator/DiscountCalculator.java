@@ -20,25 +20,22 @@ class DiscountCalculator {
 
         // Prompt the user for a series of prices
         System.out.print("Please provide a series of prices (space separated): ");
-        String prices = scanner.nextLine();
+        String input = scanner.nextLine();
+        String[] prices = input.split(" ");
 
-        // Split the string up into separate values
-        String[] priceArray = prices.split(" ");
+        for (int index = 0; index < prices.length; index++) {
 
-        for (int i = 0; i < priceArray.length; i++) {
-            // Read the individual value as a decimal
-            double originalPrice = Double.parseDouble(priceArray[i]);
-
-            // Cast the discount value to a decimal to allow the calculation
-            double amountOff = originalPrice * (double) discount;
-
-            // Calculate the sale price
-            double salePrice = originalPrice - amountOff;
-
-            System.out.println("Original Price: " + originalPrice + " Sale Price: " + salePrice);
+            double thePrice = Double.parseDouble(prices[index]);
+            double ammountOff = thePrice * discount;
+            System.out.printf("Original price %08.2f, amount after discount %08.2f\n",
+                    thePrice, thePrice- ammountOff);
         }
 
-        scanner.close();
+
+
+
+
+
     }
 
 }

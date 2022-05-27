@@ -22,12 +22,20 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45) ➔ 23.75
      */
     public double calculateShippingTotal(int weightPounds) {
-        return 0;
+        if (weightPounds <= MAX_WEIGHT_POUNDS) {
+            return (weightPounds * UP_TO_40_LB_RATE);
+
+        } else /*weightPounds > 40*/ {
+
+            return (MAX_WEIGHT_POUNDS * UP_TO_40_LB_RATE) + ((weightPounds - MAX_WEIGHT_POUNDS) * OVER_40_LB_RATE);
     }
+    }
+
 
     /*
     Scamper Shipping Company now allows customers to provide a discount code to give them 10% off of their order.
-    Implement the logic to calculate the correct shipping rate when provided a weight in pounds and a boolean value for hasDiscount.
+    Implement the logic to calculate the correct shipping rate when provided a weight in pounds and a boolean value for
+    hasDiscount.
 
     Examples:
     calculateShippingTotal(10, false) ➔ 5.0
@@ -38,6 +46,14 @@ public class Exercise03_ShippingTotal {
     calculateShippingTotal(45, true) ➔ 21.375
      */
     public double calculateShippingTotal(int weightPounds, boolean hasDiscount) {
+        if (weightPounds <= MAX_WEIGHT_POUNDS && hasDiscount == false) {
+            return (weightPounds * UP_TO_40_LB_RATE);
+        } else if (hasDiscount == false && weightPounds > MAX_WEIGHT_POUNDS) {
+            return ((weightPounds * OVER_40_LB_RATE) - MAX_WEIGHT_POUNDS);
+        }else if (weightPounds < MAX_WEIGHT_POUNDS && hasDiscount == false) {
+            return 0;
+        }
+
         return 0;
     }
 

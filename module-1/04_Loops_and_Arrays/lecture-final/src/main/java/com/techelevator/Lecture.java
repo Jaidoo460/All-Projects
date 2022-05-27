@@ -6,8 +6,12 @@ public class Lecture {
     1. Return the created array
     */
     public int[] returnArray() {
-        int[] example = { 80, 8080, 443 };
-        return example;
+        int[] array = { 80, 8080, 443 };
+        // new int[3];
+        // array[0] = 80;
+        // array[1] = 8080;
+        // array[2] = 443;
+        return array;
     }
 
     /*
@@ -22,14 +26,15 @@ public class Lecture {
     3. Return the last element of the array
     */
     public int returnLastElement() {
-        int[] portNumbers = { 80, 8080, 443 };
-        return portNumbers[2];
+        int[] portNumbers = { 80, 8080, 443, 25 };
+        return portNumbers[portNumbers.length-1];
     }
 
     /*
     4. Return the first element of the array from the parameters
     */
     public int returnFirstElementOfParam(int[] passedInArray) {
+
         return passedInArray[0];
     }
 
@@ -37,7 +42,8 @@ public class Lecture {
     5. Return the last element of the array from the parameters
     */
     public int returnLastElementOfParam(int[] passedInArray) {
-        return passedInArray[passedInArray.length - 1];
+
+        return passedInArray[passedInArray.length-1];
     }
 
     /*
@@ -46,15 +52,16 @@ public class Lecture {
     */
     public int returnVariableFromBlock(int number) {
 
-    	int result;
-    	
-        {
-            result = number * 5;
-        }
+        int result = 0;
+        { // A new block with scoped variables
 
-        return result;
+            result = number * 5;
+
+        } // the result variable disappears here
+
+        return result; // We want to return result here. How?
     }
-    
+
     /*
     7. What will the variable result be at the end of the method? Change the number in the logic expression so that
        it returns true.
@@ -67,7 +74,7 @@ public class Lecture {
             result *= multiplier;
         }
 
-        return result == 50;
+        return result == 50; // <-- Change the number to match result and make this be true
     }
 
     /*
@@ -100,11 +107,11 @@ public class Lecture {
 
         int counter = 0; // Must be started outside the block so that have access to it after the block
 
-        for (int i = 0; i < arrayToLoopThrough.length; i++) {
+        for (int i = 0; i < arrayToLoopThrough.length /* 4 */; i++) {
             counter++;
         }
 
-        return counter == 4;
+        return counter == 4; // What should the number be to return true?
     }
 
     /*
@@ -116,7 +123,7 @@ public class Lecture {
         int counter = 0;
 
         //     Start;       Keep going while         Increment by one;
-        for (int i = 0; i < arrayToLoopThrough.length; i++) {
+        for (int i =0; i < arrayToLoopThrough.length; i++) {
             counter += 1;
         }
 
