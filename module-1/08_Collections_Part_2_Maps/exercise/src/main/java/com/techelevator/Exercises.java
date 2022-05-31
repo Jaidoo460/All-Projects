@@ -1,7 +1,10 @@
 package com.techelevator;
 
 import java.util.HashMap;
+<<<<<<< HEAD
 import java.util.Locale;
+=======
+>>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 import java.util.Map;
 
 public class Exercises {
@@ -35,6 +38,7 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
+<<<<<<< HEAD
 		Map<String, String> animalGroup = new HashMap<>();
 		animalGroup.put("rhino", "Crash");
 		animalGroup.put("rhinoceros", "Crash");
@@ -56,6 +60,9 @@ public class Exercises {
 
 			return "unknown";
 		}
+=======
+		return null;
+>>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 	}
 
 	/*
@@ -81,6 +88,7 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
+<<<<<<< HEAD
 
 		Map<String, Double> salesList = new HashMap<>();
 
@@ -97,6 +105,9 @@ public class Exercises {
 			return salesList.get(itemNumber.toUpperCase());
 		}
 		return 0.0;
+=======
+		return -1.0;
+>>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 	}
 
 	/*
@@ -110,6 +121,7 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
+<<<<<<< HEAD
 
 		peterPaul.get("Peter");
 		int petersMoney = peterPaul.get("Peter");
@@ -121,6 +133,9 @@ public class Exercises {
 
 		}
 		return peterPaul;
+=======
+		return null;
+>>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 	}
 
 	/*
@@ -133,6 +148,7 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
+<<<<<<< HEAD
 		int petersMoney = peterPaul.get("Peter");
 		int paulsMoney = peterPaul.get("Paul");
 		if (petersMoney >= 5000 && paulsMoney >= 10000) {
@@ -143,6 +159,9 @@ public class Exercises {
 			peterPaul.put("PeterPaulPartnership", paulsContribution + petersContribution);
 		}
 		return peterPaul;
+=======
+		return null;
+>>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 	}
 
 	/*
@@ -154,11 +173,15 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
+<<<<<<< HEAD
 		Map<String, String> beginEnd = new HashMap<>();
 		for (String  str : words) {
 			beginEnd.put(str.charAt(0) + "", str.charAt(str.length() - 1) + "");
 	}
 		return beginEnd;
+=======
+		return null;
+>>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 	}
 
 	/*
@@ -217,8 +240,11 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
+<<<<<<< HEAD
 		Map<String, Integer> str = new HashMap<>();
 
+=======
+>>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 		return null;
 	}
 

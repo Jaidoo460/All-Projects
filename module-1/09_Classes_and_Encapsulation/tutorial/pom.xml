@@ -2,11 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.techelevator</groupId>
-<<<<<<< HEAD
-	<artifactId>m01d08-collections-part2-lecture</artifactId>
-=======
-	<artifactId>m01d08-collections-part2-lecture-final</artifactId>
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
+	<artifactId>classes-encapsulation-tutorial</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	<dependencies>
