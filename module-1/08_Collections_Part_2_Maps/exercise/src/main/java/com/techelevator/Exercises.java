@@ -1,11 +1,10 @@
 package com.techelevator;
 
-import java.util.HashMap;
-<<<<<<< HEAD
+import java.util.*;
+
 import java.util.Locale;
-=======
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
-import java.util.Map;
+
+
 
 public class Exercises {
 
@@ -38,31 +37,30 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-<<<<<<< HEAD
-		Map<String, String> animalGroup = new HashMap<>();
-		animalGroup.put("rhino", "Crash");
-		animalGroup.put("rhinoceros", "Crash");
-		animalGroup.put("giraffe", "Tower");
-		animalGroup.put("elephant", "Herd");
-		animalGroup.put("lion", "Pride");
-		animalGroup.put("crow", "Murder");
-		animalGroup.put("pigeon", "Kit");
-		animalGroup.put("flamingo", "Pat");
-		animalGroup.put("deer", "Herd");
-		animalGroup.put("dog", "Pack");
-		animalGroup.put("crocodile", "Float");
+
+		Map<String, String> animalGroupName = new TreeMap<String, String>(String.CASE_INSENSITIVE_ORDER);
+		animalGroupName.put("rhino", "Crash");
+		animalGroupName.put("rhinoceros", "Crash");
+		animalGroupName.put("giraffe", "Tower");
+		animalGroupName.put("elephant", "Herd");
+		animalGroupName.put("lion", "Pride");
+		animalGroupName.put("crow", "Murder");
+		animalGroupName.put("pigeon", "Kit");
+		animalGroupName.put("flamingo", "Pat");
+		animalGroupName.put("deer", "Herd");
+		animalGroupName.put("dog", "Pack");
+		animalGroupName.put("crocodile", "Float");
 
 		if (animalName == null) {
 			return "unknown";
-		}else if (animalGroup.containsKey(animalName.toLowerCase())) {
-			return (animalGroup.get(animalName.toLowerCase()));
-		}else {
+
+		}
+		if (!animalGroupName.containsKey(animalName)) {
 
 			return "unknown";
 		}
-=======
-		return null;
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
+		return animalGroupName.get(animalName);
+
 	}
 
 	/*
@@ -88,26 +86,24 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-<<<<<<< HEAD
 
-		Map<String, Double> salesList = new HashMap<>();
-
-		salesList.put ("KITCHEN4001", 0.20);
-		salesList.put ("GARAGE1070", 0.15);
-		salesList.put ("LIVINGROOM", 0.10);
-		salesList.put ("KITCHEN6073", 0.40);
-		salesList.put ("BEDROOM3434", 0.60);
-		salesList.put ("BATH0073", 0.15);
-
-		if (itemNumber == null) {
+		Map<String, Double> itemDiscounts = new HashMap<>();
+		if (itemNumber == null){
 			return 0.00;
-		}else if (salesList.containsKey(itemNumber.toUpperCase())){
-			return salesList.get(itemNumber.toUpperCase());
 		}
-		return 0.0;
-=======
-		return -1.0;
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
+		String itemLookup = itemNumber.toUpperCase();
+		itemDiscounts.put ("KITCHEN4001", 0.20);
+		itemDiscounts.put ("GARAGE1070", 0.15);
+		itemDiscounts.put ("LIVINGROOM", 0.10);
+		itemDiscounts.put ("KITCHEN6073", 0.40);
+		itemDiscounts.put ("BEDROOM3434", 0.60);
+		itemDiscounts.put ("BATH0073", 0.15);
+
+		if (itemLookup == "" || !itemDiscounts.containsKey(itemLookup)) {
+			return 0.00;
+		}
+		return itemDiscounts.get(itemLookup);
+
 	}
 
 	/*
@@ -121,21 +117,26 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-<<<<<<< HEAD
 
-		peterPaul.get("Peter");
-		int petersMoney = peterPaul.get("Peter");
-		int paulsMoney = peterPaul.get("Paul");
-		if (petersMoney > 0 && paulsMoney < 1000) {
-			int moneyToPayPaul = petersMoney / 2;
-			peterPaul.put("Paul", moneyToPayPaul + paulsMoney);
-			peterPaul.put("Peter", petersMoney - moneyToPayPaul);
+		int peterCash = peterPaul.get("Peter");
+		int paulCash = peterPaul.get("Paul");
+		if (peterCash > 0 && paulCash < 1000) {
+			if ((peterCash & 2) != 0) {
+				peterCash = peterCash / 2;
+				paulCash = paulCash + peterCash;
+				peterCash++;
+			}else if (peterCash > 0 && paulCash < 1000) {
+				peterCash = peterCash / 2;
+				paulCash = paulCash + peterCash;
+
+			}else {
+				return peterPaul;
+			}
 
 		}
+		peterPaul.put("Peter", peterCash);
+		peterPaul.put("Paul", paulCash);
 		return peterPaul;
-=======
-		return null;
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
 	}
 
 	/*
@@ -148,20 +149,24 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-<<<<<<< HEAD
-		int petersMoney = peterPaul.get("Peter");
-		int paulsMoney = peterPaul.get("Paul");
-		if (petersMoney >= 5000 && paulsMoney >= 10000) {
-			int paulsContribution = paulsMoney / 4;
-			int petersContribution = petersMoney / 4;
-			peterPaul.put("Paul", peterPaul.get("Paul") - paulsContribution);
-			peterPaul.put("Peter", peterPaul.get("Peter") - petersContribution);
-			peterPaul.put("PeterPaulPartnership", paulsContribution + petersContribution);
+
+		int peterCash = peterPaul.get("Peter");
+		int paulCash = peterPaul.get("Paul");
+		if (peterPaul.get("Peter") >= 5000 && peterPaul.get("Paul") >= 10000) {
+			int paulDonate = paulCash / 4;
+			int peterDonate = peterCash / 4;
+			int partnership = paulDonate + peterDonate;
+			paulCash = paulCash - paulDonate;
+			peterCash = peterCash - peterDonate;
+			peterPaul.put("PeterPaulPartnership", partnership);
+			peterPaul.put("Peter", peterCash);
+			peterPaul.put("Paul", paulCash);
+
+		}else if (peterPaul.get("Peter") == null && peterPaul.get("Paul") == null) {
+			return peterPaul;
 		}
 		return peterPaul;
-=======
-		return null;
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
+
 	}
 
 	/*
@@ -173,15 +178,14 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-<<<<<<< HEAD
-		Map<String, String> beginEnd = new HashMap<>();
-		for (String  str : words) {
-			beginEnd.put(str.charAt(0) + "", str.charAt(str.length() - 1) + "");
+
+		Map<String, String> keyValues = new HashMap<>();
+		for (String  word : words) {
+
+			keyValues.put(word.substring(0, 1), word.substring(word.length() -1));
 	}
-		return beginEnd;
-=======
-		return null;
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
+		return keyValues;
+
 	}
 
 	/*
@@ -197,7 +201,17 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		Map<String, Integer> usedWords = new HashMap<>();
+		for (String word : words){
+			if (usedWords.containsKey(word)) {
+				int count = usedWords.get(word);
+				count++;
+				usedWords.put(word, count);
+			}else {
+				usedWords.put(word, 1);
+			}
+		}
+		return usedWords;
 	}
 
 	/*
@@ -212,7 +226,17 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		Map<Integer,Integer> counts = new HashMap<>();
+		for(int integerCheck : ints){
+			if(counts.containsKey(integerCheck)) {
+				int counter = counts.get(integerCheck);
+				counter++;
+				counts.put(integerCheck, counter);
+			}else {
+				counts.put(integerCheck, 1);
+			}
+		}
+		return counts;
 	}
 
 	/*
@@ -225,46 +249,89 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
-		return null;
+		Map<String, Boolean> wordMultiples = new HashMap<>();
+		Map<String, Integer> twoOrMore = new HashMap<>();
+
+		for (String multipleTimes : words) {
+
+			if (twoOrMore.containsKey(multipleTimes)) {
+				int currentCount = twoOrMore.get(multipleTimes);
+				currentCount++;
+				if (currentCount > 1) {
+					wordMultiples.put(multipleTimes, true);
+
+				} else {
+					wordMultiples.put(multipleTimes, false);
+				}
+
+				} else {
+					twoOrMore.put(multipleTimes, 1);
+					wordMultiples.put(multipleTimes, false);
+				}
+			}
+			return wordMultiples;
+		}
+
+		/*
+		 * Given two Maps, Map<String, Integer>, merge the two into a new Map, Map<String, Integer> where keys in Map2,
+		 * and their int values, are added to the int values of matching keys in Map1. Return the new Map.
+		 *
+		 * Unmatched keys and their int values in Map2 are simply added to Map1.
+		 *
+		 * consolidateInventory({"SKU1": 100, "SKU2": 53, "SKU3": 44} {"SKU2":11, "SKU4": 5})
+		 * 	 → {"SKU1": 100, "SKU2": 64, "SKU3": 44, "SKU4": 5}
+		 *
+		 */
+		public Map<String, Integer> consolidateInventory (Map<String, Integer> mainWarehouse,
+		Map<String, Integer> remoteWarehouse){
+
+			Map<String, Integer> newMap = new HashMap<>();
+
+			for (String name : mainWarehouse.keySet()) {
+				if (remoteWarehouse.containsKey(name)) {
+					newMap.put(name, (mainWarehouse.get(name) + remoteWarehouse.get(name)));
+				} else {
+					newMap.put(name, mainWarehouse.get(name));
+				}
+			}
+			for (String name : remoteWarehouse.keySet()) {
+				if (!(mainWarehouse.containsKey(name))) {
+					newMap.put(name, remoteWarehouse.get(name));
+				}
+			}
+
+			return newMap;
+		}
+
+		/*
+		 * Just when you thought it was safe to get back in the water --- last2Revisited!!!!
+		 *
+		 * Given an array of Strings, for each String, the count of the number of times that a subString length 2 appears
+		 * in the String and also as the last 2 chars of the String, so "hixxxhi" yields 1.
+		 *
+		 * We don't count the end subString, but the subString may overlap a prior position by one.  For instance, "xxxx"
+		 * has a count of 2, one pair at position 0, and the second at position 1. The third pair at position 2 is the
+		 * end subString, which we don't count.
+		 *
+		 * Return Map<String, Integer>, where the key is String from the array, and its last2 count.
+		 *
+		 * last2Revisited(["hixxhi", "xaxxaxaxx", "axxxaaxx"]) → {"hixxhi": 1, "xaxxaxaxx": 1, "axxxaaxx": 2}
+		 *
+		 */
+		public Map<String, Integer> last2Revisited(String[] words){
+
+			Map<String, Integer> result = new HashMap<>();
+			for (int i = 0; i < words.length; i++) {
+				String sub = words[i].substring(words[i].length() - 2, words[i].length());
+				int count = 0;
+				for (int j = 0; j < words[i].length() - 2; j++) {
+					String t = words[i].substring(j, j + 2);
+					if (t.equals(sub))
+						count++;
+				}
+				result.put(words[i], count);
+			}
+			return result;
+		}
+
 	}
-
-	/*
-	 * Given two Maps, Map<String, Integer>, merge the two into a new Map, Map<String, Integer> where keys in Map2,
-	 * and their int values, are added to the int values of matching keys in Map1. Return the new Map.
-	 *
-	 * Unmatched keys and their int values in Map2 are simply added to Map1.
-	 *
-	 * consolidateInventory({"SKU1": 100, "SKU2": 53, "SKU3": 44} {"SKU2":11, "SKU4": 5})
-	 * 	 → {"SKU1": 100, "SKU2": 64, "SKU3": 44, "SKU4": 5}
-	 *
-	 */
-	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
-			Map<String, Integer> remoteWarehouse) {
-<<<<<<< HEAD
-		Map<String, Integer> str = new HashMap<>();
-
-=======
->>>>>>> 69254ec7dd0de7dd13072cdf2768ad0fc66cd00a
-		return null;
-	}
-
-	/*
-	 * Just when you thought it was safe to get back in the water --- last2Revisited!!!!
-	 *
-	 * Given an array of Strings, for each String, the count of the number of times that a subString length 2 appears
-	 * in the String and also as the last 2 chars of the String, so "hixxxhi" yields 1.
-	 *
-	 * We don't count the end subString, but the subString may overlap a prior position by one.  For instance, "xxxx"
-	 * has a count of 2, one pair at position 0, and the second at position 1. The third pair at position 2 is the
-	 * end subString, which we don't count.
-	 *
-	 * Return Map<String, Integer>, where the key is String from the array, and its last2 count.
-	 *
-	 * last2Revisited(["hixxhi", "xaxxaxaxx", "axxxaaxx"]) → {"hixxhi": 1, "xaxxaxaxx": 1, "axxxaaxx": 2}
-	 *
-	 */
-	public Map<String, Integer> last2Revisited(String[] words) {
-		return null;
-	}
-
-}

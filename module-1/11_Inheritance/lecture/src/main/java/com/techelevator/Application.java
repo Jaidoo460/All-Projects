@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.util.ArrayList;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -16,6 +18,28 @@ public class Application {
         //....
         //....
         // This might go on until the auction runs out of time or hits a max # of bids
+
+        raAuction.placeBid( new Bid( "Bob", 15));
+
+        BuyoutAuction boAuction = new BuyoutAuction( "TE Yeti Mug", 25);
+
+        braAuction.placeBid(new Bid( "Bob", 250
+
+
+        List<Auction> allAuctions = new ArrayList<>();
+
+        allAuctions.add(generalAuction);
+        allAuctions.add(boAuction);
+        allAuctions.add(raAuction);
+
+        for(Auction auction : allAuctions){
+            System.out.println("****************");
+            System.out.println(auction.getItemForSale());
+            System.out.println("*****************");
+            System.out.println("Current Winner is: " + auction.getHighBid().getBidder());
+
+            System.out.println("---------Bid");
+        }
 
     }
 }
