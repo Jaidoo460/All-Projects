@@ -10,7 +10,7 @@ import org.junit.runners.MethodSorters;
 import java.lang.reflect.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CheckingAccountTest {
+public class CheckingAccount {
 
     private static Class checkingAccountClass;
     private static Constructor twoArgConstructor;

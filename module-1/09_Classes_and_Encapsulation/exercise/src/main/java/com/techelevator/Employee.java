@@ -48,6 +48,6 @@ public class Employee {
     }
 
     public void raiseSalary(double percent){
-        this.annualSalary = ((percent/180) * this.annualSalary) + this.annualSalary;
+        this.annualSalary = ((percent/100) * this.annualSalary) + this.annualSalary;
     }
 }
