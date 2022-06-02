@@ -1,6 +1,6 @@
 package com.techelevator.farm;
 
-public class FarmAnimal {
+public class FarmAnimal implements SingAboutable{
 	private String name;
 	private String sound;
 
