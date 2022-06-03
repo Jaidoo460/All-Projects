@@ -30,6 +30,11 @@ public class BankAccount implements Accountable{
         return balance;
     }
 
+//    @Override
+//    public int getDebt() {
+//        return 0;
+//    }
+
     public int deposit(int amountToDeposit) {
         balance = balance + amountToDeposit;
         return balance;

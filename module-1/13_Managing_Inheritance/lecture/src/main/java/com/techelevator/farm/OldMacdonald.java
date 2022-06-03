@@ -1,10 +1,29 @@
 package com.techelevator.farm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OldMacdonald {
 	public static void main(String[] args) {
 
-		Singable[] singables =
-				new Singable[] {new Cow(), new Chicken(), new Pig(), new Tractor()};
+
+		List<FarmAnimal> farmAnimals = new ArrayList<>();
+
+		farmAnimals.add(new Cow());
+		farmAnimals.add(new Chicken());
+		farmAnimals.add(new Pig());
+		farmAnimals.add(new BarnCat("Fluffy", "GRRowlll"));
+		//farmAnimals.add(new FarmAnimal("Barn", "Creak"));
+
+		(farmAnimals.get(1)).nap(true);
+		(farmAnimals.get(3)).nap(true);
+		//(farmAnimals.get(4)).nap(true);
+
+		List<Singable> singables = new ArrayList<>();
+
+		singables.addAll(farmAnimals);
+		singables.add(new Tractor());
+
 
 		for (Singable singable : singables) {
 			String name = singable.getName();
