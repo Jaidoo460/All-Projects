@@ -85,7 +85,7 @@ public class LectureTest {
 		 * This is particularly helpful with assertTrue as otherwise the failure output would simply
 		 * state "Expected: true Actual: false", which sometimes isn't much help in figuring out
 		 * what went wrong */
-		Assert.assertTrue("String did not start with Hello as expected.", startsWithHello);// Assert
+		Assert.assertTrue("String did not start with Hello as expected.", startsWithHello); // Assert
 	}
 
 	@Test
@@ -99,6 +99,5 @@ public class LectureTest {
 
 	public void this_method_is_not_a_test_because_it_does_not_have_the_Test_annotation() {
 		// This method will not be run by Junit, because it's not a test
-		System.out.println("Hello All! I won't run!");
 	}
 }

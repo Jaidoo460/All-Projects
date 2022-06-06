@@ -1,27 +1,28 @@
 package com.techelevator;
 
+//Demonstration Class for Testing purposes
 public class Car {
-    private int numberOfWheels =4;
-    private String color ="Blue";
-    private int passengers[] ={1,2,3,4};
+    private int numberOfWheels =4; //Integer Property
+    private String color ="Blue"; //String Property
+    private int passengers[] = {1,2,3,4}; //Array Property
 
-    //method num of wheel
     public int getWheelCount(){
+        //Return the number of wheels
         return this.numberOfWheels;
     }
 
-    public void setColor(String Color){
-
+    public void setColor(String color){
+        //Set the color of the car
+        this.color = color;
     }
 
-
-    //method that returns color
     public String getColor(){
+        //Return the Color of the Car
         return this.color;
     }
 
-    //method that return passenger
-    public int[] getPassengers(){
+    public int[] getPassengers() {
+        //Return the Array Property
         return this.passengers;
     }
 }
