@@ -21,8 +21,18 @@ public class ExceptionsLecture {
 			System.out.println(cities[2]);
 			System.out.println(cities[3]);  // This statement will throw an ArrayIndexOutOfBoundsException
 			System.out.println("are all in Ohio."); // This line won't execute because the previous statement throws an Exception
+
+		} catch (ArrayIndexOutOfBoundsException){
+			System.out.println("*** AIOOB Exception ***");
+			System.out.println("! Uh-oh, something went wrong ! " + e.getMessage());
+
+			for(StackTraceElement ste : e.getStackTrace()){
+				System.out.println( ste.getMethodName() + ": " + ste.getLineNumber());
+			}
+
 		} catch(ArrayIndexOutOfBoundsException e) {
 			// Flow of control resumes here after the Exception is thrown
+			System.out.println("*** OOB Exception ***");
 			System.out.println("XXX   Uh-oh, something went wrong...   XXX");
 		}
 		
@@ -34,7 +44,7 @@ public class ExceptionsLecture {
 			doSomethingDangerous();  // throws an ArrayIndexOutOfBoundsException
 			System.out.println("See, I told you nothing would go wrong!");
 		} catch(ArrayIndexOutOfBoundsException e) {  
-			System.out.println("Call the Darwin Awards...");
+			System.out.println("Call the Darwin Awards..." + e.getMessage());
 		}
 		
 		System.out.println();
@@ -50,6 +60,7 @@ public class ExceptionsLecture {
 		} catch(Exception e) { // If a NumberFormatException is thrown by Integer.valueOf(...) it will be caught here since NumberFormatException "is-a" Exception
 			System.out.println("You did it wrong...");
 		}
+		System.out.println("------------------------------------------------------");
 		System.out.println();
 				
 		/* we can throw our own Exceptions in response to exceptional cases 
@@ -63,12 +74,13 @@ public class ExceptionsLecture {
 			System.out.println(numberOfGuests+" guests for "+nights+" nights just doesn't make sense.");
 			System.out.println(e.getMessage());
 		}
+		System.out.println("------------------------------------------------------");
 		System.out.println();
 		
 		
 		/* The withdraw method can throw a checked exception (i.e. OverdraftException) so we need to catch it since
 		 * the main method does not declare that it throws any exceptions. */
-		double currentBalance = 250;
+		double currentBalance = 150;
 		double amountToWithdraw = 300;
 		try {
 			double newBalance = withdraw(currentBalance, amountToWithdraw);
@@ -76,8 +88,12 @@ public class ExceptionsLecture {
 		} catch(OverdraftException e) {
 			System.out.println("Unfortunately, you can't withdraw more money than you have in the bank...");
 			System.out.println("The requested amount would overdraw the account by "+e.getOverdraftAmount());
+		} catch(MinimumBalanceException mbex){
+			System.out.println(mbex.getMessage());
 		}
 		System.out.println();
+		System.out.println("------------------------------------------------------");
+		System.out.println("------------------------------------------------------");
 		
 		/* if we try to call the withdraw method outside of a try/catch, it will cause a compiler error */
 		//withdraw(currentBalance, amountToWithdraw);
@@ -123,6 +139,10 @@ public class ExceptionsLecture {
 	 * it can throw an OverdraftException using the "throws" keyword */
 	public static double withdraw(double currentBalance, double amountToWithdraw) throws OverdraftException {
 		double newBalance;
+		if(currentBalance <= MinimumBalanceException.MIN_BAL_LIMIT){
+			throw new MinimumBalanceException();
+
+		}
 		if(amountToWithdraw <= currentBalance) {
 			newBalance = currentBalance - amountToWithdraw;
 		} else {
