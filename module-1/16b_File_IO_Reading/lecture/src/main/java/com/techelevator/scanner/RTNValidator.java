@@ -13,13 +13,14 @@ public class RTNValidator {
 		printApplicationBanner();
 		
 		File inputFile = getInputFileFromUser();
+
 		try(Scanner fileScanner = new Scanner(inputFile)) {
 			while(fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();
 				String rtn = line.substring(0, 9);
 				
 				if(checksumIsValid(rtn) == false) {
-					System.out.println(line);
+					System.out.println(line + " ---IS INVALID");
 				}
 			}
 		}
