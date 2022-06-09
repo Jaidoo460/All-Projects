@@ -14,7 +14,7 @@ public class QuizMaker {
 
 		File testFile = new File(FILE_PATH);
 		Scanner userInput = new Scanner(System.in);
-		Scanner testScanner = new Scanner(testFile);
+
 		List<QuizQuestion> quizQuestions = new ArrayList<>();
 		try(Scanner fileScanner = new Scanner(testFile)){
 			while(fileScanner.hasNextLine()){
