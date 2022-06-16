@@ -1,12 +1,15 @@
 package com.techelevator;
 
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class FindAndReplace {
 
-    public static void main(String[] args) {
+        private static final String BACON_FILE = "bacon.txt";
+        private static final String INTO_BACON_FILE = "placeholder.txt";
 
+    public static void main(String[] args) throws IOException {
+            File file = new File(INTO_BACON_FILE);
 
             Scanner userInput = new Scanner(System.in);
             System.out.println("What is the search word?");
@@ -21,14 +24,13 @@ public class FindAndReplace {
             System.out.println("What is destination file");
             String destinationFile = userInput.nextLine();
 
-            try {
-                Scanner input = new Scanner(searchedWord);
-                PrintWriter output = new PrintWriter(replacementWord)
-                while (userInput.hasNextLine()) {
-                    String
-                }
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+                    bw.write("jdfhskfhjkfhkj");
+
+            } catch (IOException e) {
+                    System.out.println("erooorrorororororororor");
             }
 
 
-
+    }
     }

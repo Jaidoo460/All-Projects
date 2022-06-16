@@ -2,3 +2,4 @@
 -- Order the results from highest to lowest populations.
 -- (56 rows)
 
+SELECT state_abbreviation, 
