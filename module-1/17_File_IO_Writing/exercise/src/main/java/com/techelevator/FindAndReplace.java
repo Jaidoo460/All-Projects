@@ -2,35 +2,38 @@ package com.techelevator;
 
 import java.io.*;
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+
+
 
 public class FindAndReplace {
 
-        private static final String BACON_FILE = "bacon.txt";
-        private static final String INTO_BACON_FILE = "placeholder.txt";
+        public static void main(String[] args) {
+                Scanner userInput = new Scanner(System.in);
+                System.out.println("What is the search word?");
+                String searchWord = userInput.nextLine();
 
-    public static void main(String[] args) throws IOException {
-            File file = new File(INTO_BACON_FILE);
+                System.out.println("What is the replacement word?");
+                String replacementWord = userInput.nextLine();
 
-            Scanner userInput = new Scanner(System.in);
-            System.out.println("What is the search word?");
-            String searchedWord = userInput.nextLine();
+                System.out.println("What is the source file?");
+                String path = userInput.nextLine();
+                File file = new File(path);
+                System.out.println("What is the destination file?");
+                String destinationFile = userInput.nextLine();
+                File convertedFile = new File(destinationFile);
+                try (Scanner fileInput = new Scanner(file); PrintWriter writer = new PrintWriter(convertedFile)) {
 
-            System.out.println("What is the replacement word?");
-            String replacementWord = userInput.nextLine();
+                        while (fileInput.hasNextLine()) {
 
-            System.out.println("What is source file?");
-            String sourceFile = userInput.nextLine();
-
-            System.out.println("What is destination file");
-            String destinationFile = userInput.nextLine();
-
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-                    bw.write("jdfhskfhjkfhkj");
-
-            } catch (IOException e) {
-                    System.out.println("erooorrorororororororor");
-            }
+                                String lineOfText = fileInput.nextLine();
 
 
-    }
-    }
+                                writer.println(lineOfText.replaceAll(searchWord, replacementWord));
+                        }
+                } catch (FileNotFoundException e) {
+
+                        System.out.println("The file was not found: " + file.getAbsolutePath());
+                }
+        }
+}
