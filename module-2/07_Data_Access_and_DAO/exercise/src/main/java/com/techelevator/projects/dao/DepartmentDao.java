@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface DepartmentDao {
 
-	/**
+    Department getDepartment(Long id);
+
+    /**
 	 * Get a department from the datastore that belongs to the given id.
 	 * If the id is not found, return null.
 	 *
