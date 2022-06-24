@@ -12,6 +12,9 @@ import java.util.List;
 
 public class JdbcDepartmentDao implements DepartmentDao {
 
+	private final String getAllSql = "select * from department";
+	private final String getOneSql = "select * from department where department_id = ?";
+	private final String updateOneSql = "update department set department_id=?, name=? where department_id=?";
 	private final JdbcTemplate jdbcTemplate;
 
 	public JdbcDepartmentDao(DataSource dataSource) {
@@ -20,10 +23,8 @@ public class JdbcDepartmentDao implements DepartmentDao {
 
 	@Override
 	public Department getDepartment(Long id) {
-		String sql = "SELECT * FROM department WHERE department_id = ?;";
 		try {
-			Department dept = (Department) jdbcTemplate.queryForObject(sql, new departmentRowMapper(), id);
-			return dept;
+			return jdbcTemplate.queryForObject(getOneSql, new DepartmentRowMapper(), new Object[]{id});
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
@@ -36,26 +37,26 @@ public class JdbcDepartmentDao implements DepartmentDao {
 
 	@Override
 	public List<Department> getAllDepartments() {
-		String sql = "SELECT * FROM department;";
-		List<Department> depts = jdbcTemplate.query(sql, new departmentRowMapper());
-		return depts;
+		return jdbcTemplate.query(getAllSql, new DepartmentRowMapper(), new Object[]{});
 	}
 
 	@Override
 	public void updateDepartment(Department updatedDepartment) {
-		String deptName = updatedDepartment.getName();
-		Long deptID = Long.valueOf(updatedDepartment.getId());
-		String sql = "UPDATE department SET name = ? WHERE department_id = ?;";
-		jdbcTemplate.update(sql, deptName, deptID);
+		jdbcTemplate.update(updateOneSql, new Object[]{updatedDepartment.getId(), updatedDepartment.getName(), updatedDepartment.getId()});
 	}
-}
 
-class departmentRowMapper implements RowMapper {
-	@Override
-	public Department mapRow(ResultSet resultSet, int i) throws SQLException {
-		Department dept = new Department();
-		dept.setName(resultSet.getString("name"));
-		dept.setId((int) resultSet.getLong("department_id"));
-		return dept;
+	class DepartmentRowMapper implements RowMapper<Department> {
+		@Override
+		public Department mapRow(ResultSet resultSet, int i) {
+			Department d = new Department();
+			try {
+				d.setName(resultSet.getString("name"));
+				d.setId(resultSet.getInt("department_id"));
+				return d;
+			} catch (SQLException e) {
+				return null;
+			}
+		}
 	}
+
 }

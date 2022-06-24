@@ -40,6 +40,7 @@ public class JdbcUserDao implements UserDao {
      */
     @Override
     public User saveUser(String userName, String password) {
+        //byte[] salt = theHighlanderSalt;
         byte[] salt = passwordHasher.generateRandomSalt();
         String hashedPassword = passwordHasher.computeHash(password, salt);
         String saltString = new String(Base64.encode(salt));
@@ -65,6 +66,7 @@ public class JdbcUserDao implements UserDao {
      */
     @Override
     public boolean isUsernameAndPasswordValid(String userName, String password) {
+        //TODO: Fix SQL Injection Vulnerability! Now! - 20220622 JAidoo
         String sqlSearchForUser = "SELECT * FROM users WHERE UPPER(username) = '" + userName.toUpperCase() + "'";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSearchForUser);

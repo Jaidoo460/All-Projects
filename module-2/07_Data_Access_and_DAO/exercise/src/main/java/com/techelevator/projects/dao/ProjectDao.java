@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ProjectDao {
 
+	Project getProject(long projectId);
+
 	/**
 	 * Get a project from the datastore that has the given id.
 	 * If the id is not found, return null.
