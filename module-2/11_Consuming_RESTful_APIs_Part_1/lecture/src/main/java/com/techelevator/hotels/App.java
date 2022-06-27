@@ -1,7 +1,11 @@
 package com.techelevator.hotels;
 
+import com.techelevator.hotels.model.Alert;
+import com.techelevator.hotels.model.Hotel;
+import com.techelevator.hotels.model.Review;
 import com.techelevator.hotels.services.ConsoleService;
 import com.techelevator.hotels.services.HotelService;
+import com.techelevator.hotels.services.WeatherService;
 
 public class App {
 
@@ -20,17 +24,42 @@ public class App {
             consoleService.printMainMenu();
             menuSelection = consoleService.promptForMenuSelection();
             if (menuSelection == 1) {
-                System.out.println("Not implemented");
+                Hotel[] hotels = hotelService.listHotels();
+               consoleService.printHotels(hotels);
+
             } else if (menuSelection == 2) {
-                System.out.println("Not implemented");
+
+                consoleService.printReviews( hotelService.listReviews());
+
             } else if (menuSelection == 3) {
-                System.out.println("Not implemented");
-            } else if (menuSelection == 4) {
-                System.out.println("Not implemented");
-            } else if (menuSelection == 5) {
-                System.out.println("Not implemented");
+
+                consoleService.printHotel(hotelService.getHotelById(1));
+
+        } else if (menuSelection == 4) {
+
+                Review[] reviews = hotelService.getReviewsByHotelId(1);
+
+                consoleService.printReviews(reviews);
+
+
+        } else if (menuSelection == 5) {
+
+                consoleService.printHotels( hotelService.getHotelsByStarRating(3) );
+
             } else if (menuSelection == 6) {
-                System.out.println("Not implemented - Create a custom Web API query here");
+
+                WeatherService ws = new WeatherService();
+
+                Alert selectedStateAlert = ws.getAlertByState("OH");
+
+//                System.out.println( ws.getAlertByState("OH"));
+
+//                System.out.println(selectedStateAlert);
+
+                for(AlertFeature af : selectedStateAlert.getFeatures()){
+                    System.out.println(af.getProperties().toString());
+                }
+
             } else if (menuSelection == 0) {
                 continue;
             } else {
