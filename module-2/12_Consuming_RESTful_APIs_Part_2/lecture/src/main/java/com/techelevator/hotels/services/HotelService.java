@@ -3,9 +3,16 @@ package com.techelevator.hotels.services;
 import com.techelevator.hotels.model.Hotel;
 import com.techelevator.hotels.model.Reservation;
 import com.techelevator.util.BasicLogger;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+
+import org.springframework.http.MediaType;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
+
+
 
 
 public class HotelService {
@@ -18,7 +25,44 @@ public class HotelService {
      */
     public Reservation addReservation(Reservation newReservation) {
         // TODO: Implement method
-        return null;
+
+        //1: Define Headers Object
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        //2: Define Entity
+        HttpEntity<Reservation> reservationEntity = new HttpEntity<>(newReservation, headers);
+
+        //3: Make The Request
+        Reservation createdReservation = null;
+
+        String logEvent = "";
+
+        try {
+            //TODO: restTemplate Request Here
+
+            createdReservation = restTemplate.postForObject(API_BASE_URL + "reservations", reservationEntity, Reservation.class);
+        }
+
+        //400 or 500 Series Response Status
+        catch(RestClientResponseException rcrEx){
+
+//            BasicLogger.log(rcrEx.getRawStatusCode() + ": " + rcrEx.getStatusText());
+            logEvent = rcrEx.getRawStatusCode() + ": " + rcrEx.getStatusText();
+        }
+        //Server does not respond... for whatever reasons (wrong address, off-line, etc.)
+        catch(ResourceAccessException raEx){
+
+            logEvent = raEx.getCause().toString() + ": " + raEx.getLocalizedMessage();
+        }
+        finally{
+           logEvent += "/n" + "Reservation for" + newReservation.getFullName() + "- Confirmation: " + ((createdReservation == null)?"FAILED":createdReservation.getId());
+           BasicLogger.log(logEvent);
+        }
+
+        System.out.println("Reservation for " + newReservation.getFullName() + "- Confirmation: " + ((createdReservation == null)?"FAILED":createdReservation.getId()));
+
+        return createdReservation;
     }
 
     /**
@@ -27,7 +71,30 @@ public class HotelService {
      */
     public boolean updateReservation(Reservation updatedReservation) {
         // TODO: Implement method
-        return false;
+        Boolean result = false;
+        //1. Define Headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        //2. Created Entity ( Building the Request)
+        HttpEntity<Reservation> reservationEntity = new HttpEntity<>(updatedReservation, headers);
+
+        //3. Send the request
+
+        try{
+            restTemplate.put(API_BASE_URL + "reservations/" + updatedReservation.getId(), reservationEntity);
+            //If it doesn't throw an error, set update result to true to indicate success
+            result = true;
+        }
+        catch (RestClientResponseException rcrEx){
+            BasicLogger.log(rcrEx.getRawStatusCode() + ": " + rcrEx.getStatusText());
+        }
+        catch (ResourceAccessException raEx){
+            BasicLogger.log(raEx.getMessage());
+        }
+        finally {
+            return result;
+        }
     }
 
     /**
@@ -35,7 +102,22 @@ public class HotelService {
      */
     public boolean deleteReservation(int id) {
         // TODO: Implement method
-        return false;
+
+        Boolean result = false;
+
+        try{
+            restTemplate.delete(API_BASE_URL + "reservations/" + id);
+            result = true;
+        }
+        catch(RestClientResponseException rcrEx){
+            BasicLogger.log(rcrEx.getRawStatusCode() + ": " + rcrEx.getMessage());
+        }
+        catch (ResourceAccessException raEx){
+            BasicLogger.log(raEx.getMessage());
+        }
+        finally{
+            return result;
+        }
     }
 
     /* DON'T MODIFY ANY METHODS BELOW */
