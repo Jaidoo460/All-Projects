@@ -5,10 +5,16 @@ import com.techelevator.reservations.dao.MemoryHotelDao;
 import com.techelevator.reservations.dao.MemoryReservationDao;
 import com.techelevator.reservations.dao.ReservationDao;
 import com.techelevator.reservations.model.Hotel;
+import com.techelevator.reservations.
+import com.techelevator.reservations.model.Reservation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+
+@RestController
 public class HotelController {
 
     private HotelDao hotelDao;
@@ -26,6 +32,7 @@ public class HotelController {
      */
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list() {
+
         return hotelDao.list();
     }
 
@@ -40,4 +47,70 @@ public class HotelController {
         return hotelDao.get(id);
     }
 
+    /**
+     * Return All Reservations
+     *
+     * @return All Reservations
+     */
+
+    @RequestMapping(path = "/reservations", method = RequestMethod.GET)
+    public List<Reservation> listReservations(){
+
+        List<Reservation> result = new ArrayList<>();
+
+        result = reservationDao.findAll();
+
+        return result;
+    }
+
+    @RequestMapping(path="/reservations/{id}", method = RequestMethod.GET)
+    public Reservation getReservationByID(@PathVariable int id){
+
+        return reservationDao.get(id);
+    }
+
+    @RequestMapping(path="/hotels/{id}reservations", method=RequestMethod.GET)
+    public List<Reservation> getHotelReservations(@PathVariable("id") int hotelId){
+
+        return reservationDao.findByHotel(hotelId);
+    }
+
+    @RequestMapping(path="/reservations", method = RequestMethod.POST)
+    public Reservation addReservation(RequestBody Reservation newReservation){
+
+        return reservationDao.create(newReservation, newReservation.getHotelID());
+    }
+
+    /**
+     * /hotels/filter?state=oh&city=cleveland
+     *
+     * @param state the state to filter by
+     * @param city the city to filter by
+     * @return a list of hotels that match the city & state
+     */
+
+    @RequestMapping(path = "/hotels/filter", method=RequestMethod.GET)
+    public List<Hotel> hotelsFilteredByStateCity(@RequestParam String state, @RequestParam(required = false) String city){
+
+        List<Hotel> filteredResults = new ArrayList<>();
+        List<Hotel> allHotels = list();
+
+        //process each hotel in allHotels, and add it to results if it matches by state and (optionally) city
+
+        for ( Hotel hotel: allHotels){
+
+            if(city != null){
+
+                if(hotel.getAddress().getCity().equalsIgnoreCase(city) && hotel.getAddress().getState().equalsIgnoreCase(state)){
+                    filteredResults.add(hotel);
+                }
+            }else{
+                if (hotel.getAddress().getState().equalsIgnoreCase()) {
+                    filteredResults.add(hotel).
+                }
+            }
+        }
+
+        return filteredResults;
+    }
 }

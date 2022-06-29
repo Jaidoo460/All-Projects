@@ -14,20 +14,50 @@ public class AuctionService {
 
     public static final String API_BASE_URL = "http://localhost:3000/auctions/";
     private RestTemplate restTemplate = new RestTemplate();
+    private HttpHeaders header = new HttpHeaders();
 
 
     public Auction add(Auction newAuction) {
-        // place code here
-        return null;
+        final String url = API_BASE_URL;
+        header.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> entity = new HttpEntity<>(newAuction, header);
+        Auction auction = null;
+
+        try{
+            auction = this.restTemplate.postForObject(url, entity, Auction.class);
+        } catch (RestClientResponseException e){
+            BasicLogger.log(e.getRawStatusCode() + ": " + e.getStatusText());
+        } catch (ResourceAccessException e){
+            BasicLogger.log(e.getMessage());
+        }
+        return auction;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
+        final String url = API_BASE_URL + updatedAuction.getId();
+        header.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> entity = new HttpEntity<>(updatedAuction, header);
+
+        try{
+            this.restTemplate.put(url, entity);
+            return true;
+        } catch (RestClientResponseException e){
+            BasicLogger.log(e.getRawStatusCode() + ": " + e.getStatusText());
+        } catch (ResourceAccessException e){
+            BasicLogger.log(e.getMessage());
+        }
         return false;
     }
 
     public boolean delete(int auctionId) {
-        // place code here
+        try{
+            restTemplate.delete(API_BASE_URL + auctionId);
+            return true;
+        } catch (RestClientResponseException e){
+            BasicLogger.log(e.getRawStatusCode() + ": " + e.getStatusText());
+        } catch (ResourceAccessException e){
+            BasicLogger.log(e.getMessage());
+        }
         return false;
     }
 
