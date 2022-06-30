@@ -9,6 +9,7 @@ import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,9 +85,16 @@ public class HotelController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
-        return reservationDao.create(reservation, hotelID);
+
+        Hotel selectedHotel = get(hotelID);
+
+        if( get(hotelID) != null){
+            return reservationDao.create(reservation, hotelID);
+        }else{
+            throw new HotelNotFoundException();
+        }
     }
 
     /**
@@ -119,6 +127,25 @@ public class HotelController {
         }
 
         return filteredHotels;
+    }
+
+    //TODO: Update Existing Reservation
+
+    @RequestMapping(path="/reservations/{id}", method = RequestMethod.PUT)
+    public Reservation update(@RequestBody @Valid Reservation updatedReservation, @PathVariable int id)throws ReservationNotFoundException{
+
+        return reservationDao.update(updatedReservation, id);
+
+
+    }
+
+    //TODO: Cancel-Delete an Existing Reservation
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path ="/reservations/{id}", method = RequestMethod.GET)
+    public void deleteReservation(int id) throws ReservationNotFoundException{
+
+        reservationDao.delete(id);
     }
 
 }

@@ -26,7 +26,7 @@ public class HotelService {
 
         Reservation returnedReservation = null;
         try {
-           returnedReservation  = restTemplate.postForObject(API_BASE_URL + "reservations", entity, Reservation.class);
+           returnedReservation  = restTemplate.postForObject(API_BASE_URL + "hotels/" + newReservation.getHotelId() + "reservations", entity, Reservation.class);
         } catch (RestClientResponseException | ResourceAccessException e) {
             BasicLogger.log(e.getMessage());
         }
