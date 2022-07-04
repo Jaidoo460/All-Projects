@@ -41,6 +41,7 @@ public class AuctionController {
         return dao.get(id);
     }
 
+    @RequestMapping(method = RequestMethod.POST)
     public Auction create(@ RequestBody Auction newAuction){
         if(newAuction != null){
             newAuction = dao.create(newAuction);
