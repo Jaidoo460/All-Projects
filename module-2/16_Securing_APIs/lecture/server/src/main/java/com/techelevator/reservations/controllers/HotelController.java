@@ -9,12 +9,14 @@ import com.techelevator.reservations.exception.ReservationNotFoundException;
 import com.techelevator.reservations.model.Hotel;
 import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class HotelController {
 
@@ -31,8 +33,11 @@ public class HotelController {
      *
      * @return a list of all hotels in the system
      */
+
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list() {
+
         return hotelDao.list();
     }
 
@@ -42,6 +47,7 @@ public class HotelController {
      * @param id the id of the hotel
      * @return all info for a given hotel
      */
+
     @RequestMapping(path = "/hotels/{id}", method = RequestMethod.GET)
     public Hotel get(@PathVariable int id) {
         return hotelDao.get(id);
