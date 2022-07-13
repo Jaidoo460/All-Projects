@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: lightgoldenrodyellow;
+}
+
+header {
+    text-align: center;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+/* #myHeader {
+    background-color: lightblue;
+    color: black;
+    padding: 40px;
+    text-align: center;
+  }  */

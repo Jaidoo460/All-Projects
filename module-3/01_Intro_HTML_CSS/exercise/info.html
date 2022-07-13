@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="css/form.css">
 </head>
+
 <body>
-    
+    <header>
+        <h1>Form</h1>
+        
+    </header>
+
+    <main>
+        <form action="http://www.fakewebsite.com" method="POST">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="name" required>
+            </div>
+
+            <div>
+                <label for="date-of-birth">Date of Birth:</label>
+                <input type="date" name="date-of-birth" id="date-of-birth" required>
+            </div>
+
+            <div>
+                <label for="favorite-color">Favorite color:</label>
+                <input type="color" name="favorite-color" id="favorite-color" required>
+            </div>
+
+            <div>
+                <label for="lucky-number">Favorite number:</label>
+                <input type="number" name="lucky-number" id="lucky-number" required>
+            </div>
+
+            <div>
+                <label for="confirmation">Confirm data is correct:</label>
+                <input type="checkbox" name="confirmation" id="confirmation" required>
+            </div>
+
+            <input type="submit">
+
+        </form>
+    </main>
 </body>
+
 </html>

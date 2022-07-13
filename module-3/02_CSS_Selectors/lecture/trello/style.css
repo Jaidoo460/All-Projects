@@ -1,0 +1,152 @@
+*{
+    box-sizing: border-box;
+    /* making the website uncopyable with ur mouse */
+    user-select: none;
+}
+
+html {
+    height: 100%;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-image: linear-gradient(to bottom, gray, lightgray);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    white-space: nowrap;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    height: 50px;
+}
+
+header > h1, header > p {
+    display: inline-block;
+    padding-right: 20px;
+    vertical-align: middle;
+    color: rgba(255,255,255, .8);
+    border-right: 1px solid rgba(255,255,255, 0.5); 
+    height: 32px;
+}
+
+header > h1 {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+header > p {
+    font-size: .9rem;
+    padding-left: 5px;
+}
+
+main {
+    margin-top: 50px;
+}
+
+div.trello-list {
+
+    display: inline-block;
+    width: 300px;
+    margin-right: 10px;
+    vertical-align: top;
+    background-color: #DDD;
+    border-radius: 5px 5px;
+
+}
+
+div.trello-list h2 {
+    margin: 8px;
+
+    font-size: 1.0em;
+    font-weight: bolder;
+}
+
+div.trello-list ol {
+    margin: 0px;
+    padding: 0px;
+}
+
+div.trello-list li {
+    list-style: none;
+    background-color: rgb(255,255,255);
+    font-size: 0.9em;
+    border-radius: 3px;
+
+    margin-bottom: 8px;
+    padding: 8px;
+
+    white-space: normal;
+}
+
+div.trello-list li:last-child {
+    margin-bottom: 0px;
+}
+
+div.trello-list li:hover {
+    background-color: palegoldenrod;
+    color: blue;
+    font-weight: bold;
+
+}
+
+div.trello-list a {
+    display: block;
+    text-decoration: none;
+    color: #888;
+    /* Format the box using Clock-Model: 
+    Top Right Bottom Left 
+    (12:00 3:00 6:00 9:00) */
+    padding: 8px 0px 8px 5px;
+}
+
+div.trello-list a:hover {
+    background-color: rgba(50,50,50, .6);
+    color: antiquewhite;
+}
+
+.labels span {
+
+    display: inline-block;
+    vertical-align: top;
+    width: 40px;
+    height: 8px;
+    border-radius: 4px;
+}
+
+.label.pathway {
+    background-color: red;
+}
+
+.label.general {
+    background-color: aqua;
+}
+
+.label.individual {
+    background-color: green;
+}
+
+.label.pair {
+    background-color: orange;
+}
+
+/* Manage scrolling */
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #bbbbbb;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #888888;
+    border-radius: 5px 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: antiquewhite;
+}
