@@ -1,3 +1,58 @@
+#main-grind {
+    display: grid;
+    
+}
+
+#experience-grid {
+    display: grid;
+}
+
+/* Main Grid-Children */
+
+#headline {
+    grid-area: headline;
+}
+
+#student-picture {
+    grid-area: headshot;
+}
+
+#student-quote {
+    grid-area: quote;
+}
+
+#student-profile {
+    grid-area: profile;
+}
+
+#student-contact {
+    grid-area: contact-info;
+}
+
+#experience-grid {
+    grid-area: experience;
+}
+
+/* Experience Grid Children */
+
+#experience-code {
+    grid-area: code-ex;
+}
+
+#experience-database {
+    grid-area: db-ex;
+}
+
+#experience-web {
+    grid-area: web-ex;
+}
+
+#experience-design {
+    grid-area: design-ex;
+}
+
+
+
 * {
     font-family: Tahoma, Verdana, Segoe, sans-serif;
     box-sizing: border-box;

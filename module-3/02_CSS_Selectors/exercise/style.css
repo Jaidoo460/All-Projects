@@ -15,3 +15,74 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+aside {
+  position: fixed;
+  border-right: 1px solid rgba(0,173,238, 0.4);
+  height: 100vh;
+  width: 200px;
+
+}
+
+aside > img {
+  display: block;
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+} 
+
+main {
+  display: block;
+  margin-left: 200px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+li {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0,173,238, 0.4);
+  width: 10em;
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
+}
+
+a {
+  font-weight: bold;
+  color: #00ADEE;
+  text-decoration: none;
+}
+
+li:first-child {
+  text-decoration: underline;
+}
+
+header > img {
+  height: 100px;
+  margin-bottom: 5px;
+}
+
+main > img {
+  width: 100%;
+}
+
+div {
+  display: inline-block;
+  width: 33%;
+  vertical-align: top;
+  padding: 20px;
+}
+
+h2 {
+  color: #8CC36F;
+}
+
+i{
+  margin: 5px;
+}
+
+#what-we-do, #our-work {
+  border-right: 1px solid rgba(170,239,135,0.8);
+}
