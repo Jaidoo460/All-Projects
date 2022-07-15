@@ -1,5 +1,44 @@
- 
+body,
+#hero footer,
+#featured section,
+#featured section article div,
+#all-items section article {
+  display: flex;
+} 
 
+body,
+#all-items section {
+  flex-direction: column;
+  align-items: center;
+}
+
+#featured section article div{
+  justify-content: center;
+}
+
+#all-items section article{
+  justify-content: center;
+  align-items: center;
+}
+
+#hero footer{
+  align-items: center;
+  justify-content: space-between;
+}
+
+#all-items section article:nth-child(even) div:first-child{
+  order: 2;
+}
+
+@media screen and (max-width: 1024px) {
+  #featured section {
+    flex-wrap: wrap;
+  }
+}
+
+#featured section article:nth-child(even){
+  border: none !important;
+}
 
 /***** enter flexbox CSS above this line *****/
 
