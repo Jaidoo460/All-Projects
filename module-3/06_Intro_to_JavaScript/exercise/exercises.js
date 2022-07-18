@@ -5,13 +5,16 @@
 		sumDouble(1, 2) → 3
 		sumDouble(3, 2) → 5
 		sumDouble(2, 2) → 8
+*/
 
 		function sumDouble(x, y) {
-			// do logic here
-			// return result;
-			return x + y;
+			if(x === y){
+				return (x + y) * 2;
+			}
+			// else
+				return x + y;
         }
-*/
+
 
 /*
 2. **hasTeen** We'll say that a number is "teen" if it is in the range 13..19 inclusive. 
@@ -22,6 +25,11 @@
 		hasTeen(20, 10, 13) → true
 */
 
+		function hasTeen(num1, num2, num3) {
+
+			
+		}
+
 /* 
 3. **lastDigit** Given two non-negative int values, return true if they have the same 
     last digit, such as with 27 and 57.
@@ -30,6 +38,9 @@
 		lastDigit(6, 17) → false
 		lastDigit(3, 113) → true
 */
+		function lastDigit(num1, num2) {
+			return num1 % 10 === num2 % 10;
+		}
 
 /*
 4. **seeColor** Given a string, if the string begins with "red" or "blue" return that color 
@@ -56,6 +67,9 @@
 		frontAgain("edit") → false
 		frontAgain("ed") → true
 */
+		function frontAgain(str) {
+			return str.substring(0, 2) == str.substring(str.length -2);
+		}
 
 /*
 7. **cigarParty** When squirrels get together for a party, they like to have cigars. 
@@ -120,3 +134,13 @@ firstName, lastName, and age. Populate the properties with your values.
 		age
 	}
 */
+
+	function createObject(){
+		const obj = {
+			firstName: "Clark",
+			lastName: "Kent",
+			age:35
+		};
+
+		return obj;
+	}
