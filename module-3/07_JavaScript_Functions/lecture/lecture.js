@@ -1,3 +1,5 @@
+
+
 /**
  * All named functions will have the function keyword and
  * a name followed by parentheses.
@@ -28,6 +30,10 @@ function printToConsole(value) {
  * @param {number} secondParameter the second parameter to multiply
  */
 
+function multiplyTogether(firstParameter, secondParameter){
+  return firstParameter*secondParameter;
+}
+
 /**
  * This version makes sure that no parameters are ever missing. If
  * someone calls this function without parameters, we default the
@@ -39,6 +45,9 @@ function printToConsole(value) {
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
 
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0){
+  return firstParameter*secondParameter;
+}
 
  
 /**
@@ -73,23 +82,79 @@ function returnBeforeEnd(firstParameter, secondParameter) {
  */
 function scopeTest() {
   // This variable will always be in scope in this function
-  let inScopeInScopeTest = true;
+  let outerScope = true;
+  console.log(`InScopeTest Outer is: ${outerScope}`);
 
   {
     // this variable lives inside this block and doesn't
     // exist outside of the block
-    let scopedToBlock = inScopeInScopeTest;
+    let innerScope = outerScope;
+    
+    console.log(`scopedToBlock (Inner) is: ${innerScope}`);
   }
 
+  // console.log(typeof scopedToBlock);
+  
+
   // scopedToBlock doesn't exist here so an error will be thrown
-  if (inScopeInScopeTest && scopedToBlock) {
+  if (outerScope && innerScope) {
     console.log("This won't print!");
   }
 }
 
+// ARRAY STUFF - FIRST WE GO BACK TO THE SLIDES //
+
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
+}
+
+//forEach()
+
+
+/**
+ * 
+ * @param {[]} itemArray Items to Print
+ * @param { f } printFunc Print output Function
+ */
+
+function printUsingForEach(itemArray=[], printFunc = {}){
+
+  itemArray.forEach(item =>
+    // console.log(`Item: ${itemArray.indexOf(item) + 1 }: ${item}`);
+    printFunc(itemArray, item) );
+}
+
+// print out an item that is a member of an array
+function printArrayItem(srcArray=[], currItem){
+  console.log(`Item ${ srcArray.indexOf(currItem) + 1}: ${currItem}`);
+}
+
+// map()
+
+function firstInitialsOfName(names = []){
+
+  return names.map( name => { return name.substring(0,1); });
+}
+
+function returnMods(values = [], modVal = 1){
+
+    let moddedVals = [];
+
+  moddedVals = values.map( val => 
+    { return val % modVal; }
+  );
+
+  return moddedVals;
+}
+
+
+function returnMods(values = [], modVal = 1){
+
+return values.map( val => 
+  { return val % modVal; }
+);
+
 }
 
 /**
@@ -100,8 +165,35 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+  return numbersToSum.reduce( (accumulator, currVal) =>
+    {
+      return accumulator + currVal;
+    }
+
+  );
 }
+
+// DO IT IN A NON-ANONYNOUS WAY!
+
+function reduceAllNumbersVariable(numbersToReduce=[]) {
+  return numbersToReduce.reduce( addNumbers );
+}
+
+function addNumbers(accumulator, currVal) 
+  {
+    return accumulator + currVal;
+  }
+
+  function multNumbers(accumulator, currVal){
+    return accumulator * currVal;
+  }
+
+  // DO IT IN A PARAMETERIZED NON-ANONYMOUS WAY
+
+  function reduceAllNumbersVariable(numbersToReduce=[], reduction = ()=> {}) {
+    return numbersToReduce.reduce( reduction );
+  }
+
 
 /**
  * Takes an array and returns a new array of only numbers that are
