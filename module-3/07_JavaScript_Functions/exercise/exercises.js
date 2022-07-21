@@ -20,7 +20,7 @@
  * @returns {boolean} true if they are admitted
  */
 
-function isAdmitted( gpa, satScore = 0, recommendation = false){
+function isAdmitted(gpa, satScore = 0, recommendation = false) {
 
     let theGpa = gpa > 3.0;
     let theSat = satScore > 1200;
@@ -31,14 +31,16 @@ function isAdmitted( gpa, satScore = 0, recommendation = false){
         isAdmitted = true;
 
     }
-    else if (theSat && theRecommendation){
+    else if (theSat && theRecommendation) {
         isAdmitted = true;
     }
-    else if (gpa > 4.0 || satScore > 1300){
+    else if (gpa > 4.0 || satScore > 1300) {
         isAdmitted = true;
     }
     return isAdmitted;
 }
+
+
 
 /**
  * Write a function called useParameterToFilterArray that takes an anonymous
@@ -49,7 +51,7 @@ function isAdmitted( gpa, satScore = 0, recommendation = false){
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
-function useParameterToFilterArray(filterFunction){
+function useParameterToFilterArray(filterFunction) {
 
     return unfilteredArray.filter(filterFunction);
 }
@@ -67,9 +69,11 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the resultant number
  */
 
-function makeNumber(stringFir, stringSec = ''){
+function makeNumber(stringFir, stringSec = '') {
     return Number(stringFir + stringSec);
 }
+
+
 
 /**
  * Write a function called addAll that takes an unknown number of parameters
@@ -79,9 +83,9 @@ function makeNumber(stringFir, stringSec = ''){
  * @returns {number} the sum of all the parameters (or arguments)
  */
 
-function addAll(...number){
-    return number.reduce((preValue, currentValue) => 
-    preValue + currentValue, 0);
+function addAll(...number) {
+    return number.reduce((preValue, currentValue) =>
+        preValue + currentValue, 0);
 }
 
 
@@ -113,25 +117,23 @@ function addAll(...number){
  * Use `map` and an anonymous function.
  */
 
-    function 
 
-/** 
+
+/**
  * Write and document a function called findLargest that uses `forEach`
  * to find the largest element in an array.
  * The function must work for strings and numbers.
- * 
+ *
  * For strings, "largest" means the word coming last in lexographical order.
- * Lexographic is similar to alphabetical order except that 
- * capital letters come before lowercase letters: 
- * 
+ * Lexographic is similar to alphabetical order except that
+ * capital letters come before lowercase letters:
+ *
  * "cat" < "dog" but "Dog" < "cat"
  *
  * @param {number[]|string[]} searchArray the array to search
  * @returns {number|string} the number or string that is largest
  **/
-    // function findLargest() { 
-    //     let result = '';
-    //     for(le
+
 
 /*
  * CHALLENGE
