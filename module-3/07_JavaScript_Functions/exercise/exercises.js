@@ -20,6 +20,26 @@
  * @returns {boolean} true if they are admitted
  */
 
+function isAdmitted( gpa, satScore = 0, recommendation = false){
+
+    let theGpa = gpa > 3.0;
+    let theSat = satScore > 1200;
+    let theRecommendation = recommendation = true
+    let isAdmitted = false;
+
+    if (theGpa && theRecommendation) {
+        isAdmitted = true;
+
+    }
+    else if (theSat && theRecommendation){
+        isAdmitted = true;
+    }
+    else if (gpa > 4.0 || satScore > 1300){
+        isAdmitted = true;
+    }
+    return isAdmitted;
+}
+
 /**
  * Write a function called useParameterToFilterArray that takes an anonymous
  * function and uses that in the `unfilteredArray` filter function. Return the result.
@@ -30,7 +50,7 @@
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
 
 function useParameterToFilterArray(filterFunction){
-    
+
     return unfilteredArray.filter(filterFunction);
 }
 
@@ -47,6 +67,10 @@ function useParameterToFilterArray(filterFunction){
  * @returns {number} the resultant number
  */
 
+function makeNumber(stringFir, stringSec = ''){
+    return Number(stringFir + stringSec);
+}
+
 /**
  * Write a function called addAll that takes an unknown number of parameters
  * and adds all of them together. Return the sum.
@@ -54,6 +78,16 @@ function useParameterToFilterArray(filterFunction){
  * @param {...number} num a series of numbers to add together
  * @returns {number} the sum of all the parameters (or arguments)
  */
+
+function addAll(...number){
+    return number.reduce((preValue, currentValue) => 
+    preValue + currentValue, 0);
+}
+
+
+
+
+
 
 /*
  * Write and document a function called makeHappy that takes
@@ -79,6 +113,8 @@ function useParameterToFilterArray(filterFunction){
  * Use `map` and an anonymous function.
  */
 
+    function 
+
 /** 
  * Write and document a function called findLargest that uses `forEach`
  * to find the largest element in an array.
@@ -93,7 +129,9 @@ function useParameterToFilterArray(filterFunction){
  * @param {number[]|string[]} searchArray the array to search
  * @returns {number|string} the number or string that is largest
  **/
-
+    // function findLargest() { 
+    //     let result = '';
+    //     for(le
 
 /*
  * CHALLENGE
