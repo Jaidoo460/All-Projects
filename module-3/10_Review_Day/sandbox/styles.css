@@ -1,0 +1,27 @@
+.board {
+    height: 600px;
+    width: 600px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: brown;
+}
+
+.square {
+
+    height: 185px;
+    width: 185px;
+    border: 2px solid green;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: tan;
+}
+
+.player1 {
+    background-color: red;
+}
+
+.player2 {
+    background-color: blue;
+}
