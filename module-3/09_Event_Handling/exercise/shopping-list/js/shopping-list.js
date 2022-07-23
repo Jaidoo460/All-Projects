@@ -36,3 +36,22 @@ function displayGroceries() {
     ul.appendChild(li);
   });
 }
+
+document.addEventListener('DOMContentLoaded', ()=> {
+  setPageTitle();
+  displayGroceries();
+
+  const itemsList = document.querySelectorAll('li');
+  itemsList.forEach((allItem) => {
+    allItem.addEventListener('click', () =>{
+
+      if(!allItem.classList.contains('completed')) {
+        allItem.classList.add('completed');
+        allItem.querySelector('').classList.add('completed');
+      }
+
+    });
+
+    
+  });
+});
