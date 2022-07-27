@@ -56,6 +56,3 @@ a {
   color: #42b983;
 }
 </style>
-
-
-<!-- <tr v-for="(user, index) in filteredList" :key="index" :class="{disabled: user.status === 'Disabled'}"> -->

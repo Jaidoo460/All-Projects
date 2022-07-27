@@ -15,7 +15,7 @@
       <tbody>
         <tr>
           <td>
-            <input type="checkbox" id="selectAll" />
+            <input type="checkbox" id="selectAll"  />
           </td>
           <td>
             <input type="text" id="firstNameFilter" v-model="filter.firstName" />

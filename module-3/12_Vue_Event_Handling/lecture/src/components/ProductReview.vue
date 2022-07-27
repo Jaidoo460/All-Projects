@@ -1,46 +1,93 @@
 <template>
   <div class="main">
+   
     <h2>Product Reviews for {{ name }}</h2>
 
     <p class="description">{{ description }}</p>
 
+    <!-- REVIEW SUMMARY -->
     <div class="well-display">
       <div class="well">
-        <span class="amount">{{ averageRating }}</span>
+        <span class="amount" v-on:click="filter = 0">{{ averageRating }}</span>
         Average Rating
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfOneStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 1">{{ numberOfOneStarReviews }}</span>
         1 Star Review{{ numberOfOneStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfTwoStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 2">{{ numberOfTwoStarReviews }}</span>
         2 Star Review{{ numberOfTwoStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfThreeStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 3">{{ numberOfThreeStarReviews }}</span>
         3 Star Review{{ numberOfThreeStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfFourStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 4">{{ numberOfFourStarReviews }}</span>
         4 Star Review{{ numberOfFourStarReviews === 1 ? '' : 's' }}
       </div>
 
       <div class="well">
-        <span class="amount">{{ numberOfFiveStarReviews }}</span>
+        <span class="amount" v-on:click="filter = 5">{{ numberOfFiveStarReviews }}</span>
         5 Star Review{{ numberOfFiveStarReviews === 1 ? '' : 's' }}
       </div>
     </div>
 
+    <a 
+      href="#"
+      id="show-form-button"
+      v-on:click.prevent="showForm=true"
+    >Add a Review</a>
+
+    <!-- NEW REVIEW FORM -->
+    <form action="" v-if="showForm===true">
+      <div class="form-element">
+        <label for="reviewer">Name: </label>
+        <input id="reviewer" type="text" v-model.trim="newReview.reviewer"/>
+      </div>
+      <div class="form-element">
+        <label for="title">Review Title:</label>
+        <input id="title" type="text" v-model.trim="newReview.title"/>
+      </div>
+      <div class="form-element">
+        <label for="rating">Rating</label>
+        <select id="rating" v-model.number="newReview.rating">
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+
+        </select>
+        
+      </div>
+      <div class="form-element">
+        <label for="review">Review Body:</label>
+        <textarea id="review" type="text" v-model.trim="newReview.reviewer"></textarea>
+      </div>
+
+       
+
+      <input type="submit" value="Save" v-on:click.prevent="addNewReview">
+      <input type="button" value="Cancel" v-on:click="resetForm">
+
+      
+    </form>
+
+    <p id="message">{{ message }}</p>
+
+
+    <!-- REVIEWS -->
     <div
       class="review"
-      v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
+      v-bind:class="{ favorited: review.favorited }"
     >
       <h4>{{ review.reviewer }}</h4>
       <div class="rating">
@@ -70,6 +117,8 @@ export default {
   data() {
     return {
       name: "Cigar Parties for Dummies",
+      showForm: false,
+      filter: 0,
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       newReview: {},
@@ -105,8 +154,8 @@ export default {
             "There are a lot of good, solid tips in this book. I don't want to ruin it, but prelighting all the cigars is worth the price of admission alone.",
           rating: 3,
           favorited: false
-        }
-      ]
+        },
+      ],
     };
   },
   computed: {
@@ -140,12 +189,44 @@ export default {
       return this.reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === 5);
       }, 0);
+    },
+
+    filteredReviews(){
+      return this.reviews.filter(review => {
+        return this.filter === 0 ? true : review.rating === this.filter;
+      });
+    }
+  },
+  methods: {
+    addNewReview() {
+      if(this.newReview.reviewer && this.newReview.title && this.newReview.rating && this.wordCount(this.newReview.review, 5)) {
+        this.reviews.unshift(this.newReview);
+        this.resetForm();
+        this.message = "Review Added";
+      }else
+      {
+        this.message = "A Name, Title, and Rating, and 5 Words are Required!";
+      }
+
+    },
+    resetForm() {
+      this.newReview = {favorited:false};
+      this.showForm = false;
+
+    },
+    wordCount(multiWordText, count){
+
+      return multiWordText.split(" ").length >= count;
     }
   }
 };
 </script>
 
 <style scoped>
+#message {
+  font-weight: bolder;
+  color: red;
+}
 div.main {
   margin: 1rem 0;
 }
