@@ -39,12 +39,12 @@
           <td>&nbsp;</td>
         </tr>
         <tr
-          v-for="user in filteredList"
-          v-bind:key="user.id"
-          v-bind:class="{ disabled: user.status === 'Disabled' }"
+          v-for= "user in filteredList"
+          v-bind:key= "user.id"
+          v-bind:class= "{ disabled: user.status === 'Disabled' }"
         >
           <td>
-            <input type="checkbox" v-on:change="checkSelectAll()" v-bind:id="user.id" v-bind:value="user.id" v-model="selectedUserIDs" />
+            <input type= "checkbox" v-on:change= "checkSelectAll()" v-bind:id= "user.id" v-bind:value= "user.id" v-model= "selectedUserIDs" />
           </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
@@ -52,7 +52,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button v-on:click="flipStatus(user.id)" class="btnEnableDisable">{{ user.status == "Disabled" ? "Enable" : "Disable" }}</button>
+            <button v-on:click= "flipStatus(user.id)" class="btnEnableDisable">{{ user.status == "Disabled" ? "Enable" : "Disable" }}</button>
           </td>
         </tr>
       </tbody>
@@ -190,7 +190,7 @@ export default {
     deleteSelectedUsers() {
       this.selectedUserIDs.forEach(id => {
         let user = this.users.find(user => user.id === id);
-        this.user.pop(user);
+        this.user(user);
       });
       this.selectedUserIDs = [];
     },
@@ -199,7 +199,7 @@ export default {
       if(this.selectedAll) {
         this.users.forEach(user => {
           if(!this.selectedUserIDs.includes(user.id)) {
-            this.selectedUserIDs.push(user.id)
+            this.selectedUserIDs(user.id)
           }
         })
       }else {
@@ -213,7 +213,7 @@ export default {
 
     flipStatus(id) {
       this.users.forEach((user) =>{
-        if(user.id === id && user.status.includes("Active") ){
+        if(user.id === id && user.status.includes() ){
           user.status = "Disabled"
         }else if(user.id === id && user.status.includes("Disabled") ){
           user.status = "Active"
@@ -224,7 +224,7 @@ export default {
 
     saveUser() {
       this.users.unshift(this.newUser);
-      this.resetForm();
+      this.resetForm;
     },
   },
 
@@ -235,28 +235,24 @@ export default {
       if (this.filter.firstName != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.firstName
-            .toLowerCase()
             .includes(this.filter.firstName.toLowerCase())
         );
       }
       if (this.filter.lastName != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.lastName
-            .toLowerCase()
             .includes(this.filter.lastName.toLowerCase())
         );
       }
       if (this.filter.username != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.username
-            .toLowerCase()
             .includes(this.filter.username.toLowerCase())
         );
       }
       if (this.filter.emailAddress != "") {
         filteredUsers = filteredUsers.filter((user) =>
           user.emailAddress
-            .toLowerCase()
             .includes(this.filter.emailAddress.toLowerCase())
         );
       }
@@ -275,7 +271,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 table {
   margin-top: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
