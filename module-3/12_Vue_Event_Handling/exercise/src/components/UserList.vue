@@ -39,12 +39,12 @@
           <td>&nbsp;</td>
         </tr>
         <tr
-          v-for= "user in filteredList"
-          v-bind:key= "user.id"
-          v-bind:class= "{ disabled: user.status === 'Disabled' }"
+          v-for="user in filteredList"
+          v-bind:key="user.id"
+          v-bind:class="{ disabled: user.status === 'Disabled' }"
         >
           <td>
-            <input type= "checkbox" v-on:change= "checkSelectAll()" v-bind:id= "user.id" v-bind:value= "user.id" v-model= "selectedUserIDs" />
+            <input type="checkbox" v-on:change= "checkSelectAll()" v-bind:id= "user.id" v-bind:value= "user.id" v-model= "selectedUserIDs" />
           </td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
@@ -52,7 +52,7 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button v-on:click= "flipStatus(user.id)" class="btnEnableDisable">{{ user.status == "Disabled" ? "Enable" : "Disable" }}</button>
+            <button v-on:click="flipStatus(user.id)" class="btnEnableDisable">{{ user.status == "Disabled" ? "Enable" : "Disable" }}</button>
           </td>
         </tr>
       </tbody>
@@ -199,7 +199,7 @@ export default {
       if(this.selectedAll) {
         this.users.forEach(user => {
           if(!this.selectedUserIDs.includes(user.id)) {
-            this.selectedUserIDs(user.id)
+            this.selectedUserIDs.push(user.id)
           }
         })
       }else {

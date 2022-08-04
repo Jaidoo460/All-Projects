@@ -1,5 +1,14 @@
 <template>
-  <div></div>
+  <div id="comments">
+    <h2>Comments</h2>
+
+    <div class="comment" v-for="comment in comments" :key="comment.id">
+      <h3>{{ comment.author}}</h3>
+      <p class="postedOn">{{comment.postedOn }}</p>
+      <p class="commentBody" > {{comment.body}}</p>
+    </div>
+    
+  </div>
 </template>
 
 <script>

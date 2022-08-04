@@ -1,5 +1,7 @@
 <template>
+
   <form v-on:submit.prevent="addNewReview">
+    <h2>{{Product Name}}</h2>
     <div class="form-element">
       <label for="reviewer">Name:</label>
       <input id="reviewer" type="text" v-model="newReview.reviewer" />
@@ -24,7 +26,7 @@
     </div>
     <div class="actions">
       <button v-on:click.prevent="resetForm" type="cancel">Cancel</button>
-      <button>Submit</button>
+      <button v-on:click.prevent="addNewReview">Submit</button>
     </div>
   </form>
 </template>
@@ -45,15 +47,25 @@ export default {
       }
     };
   },
+  computed: {
+        product() {
+            return this.$store.state.products.find(
+                p => p.id == this.$store.state.activeProduct
+            );
+        }
+    },
+    
   methods: {
     addNewReview() {
-      const productID = this.$route.params.id;
-      this.newReview.productID = productID;
+      // const productID = this.$route.params.id;
+      this.newReview.productID = this.$route.params.id;
       this.$store.commit("ADD_REVIEW", this.newReview);
+      this.$router.push({name: 'product-detail', params: {id: this.$route.params.id}});
       // TODO: send the visitor back to the product page to see the new review
     },
     resetForm() {
       this.newReview = {};
+      this.$router.push({name: 'product-detail', params: {id: this.$route.params.id}});
     }
   }
 };
