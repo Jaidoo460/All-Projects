@@ -1,33 +1,42 @@
 import axios from 'axios';
 
-const http = axios.create({
+const boardAPI = axios.create({
   baseURL: "http://localhost:3000"
 });
 
 export default {
 
   getBoards() {
-    return http.get('/boards');
+    return boardAPI.get('/boards');
   },
 
   getCards(boardID) {
-    return http.get(`/boards/${boardID}`)
+    return boardAPI.get(`/boards/${boardID}`)
   },
 
   getCard(cardID) {
-    return http.get(`/cards/${cardID}`)
+    return boardAPI.get(`/cards/${cardID}`)
   },
 
   addCard(card) {
-    return http.post('/cards', card);
+    return boardAPI.post('/cards', card);
   },
 
   updateCard(card) {
-    return http.put(`/cards/${card.id}`, card);
+    return boardAPI.put(`/cards/${card.id}`, card);
   },
 
   deleteCard(cardID) {
-    return http.delete(`/cards/${cardID}`);
+    return boardAPI.delete(`/cards/${cardID}`);
   }
+
+  //TODO: ADD A BOARD
+  addBoard(board) {
+    return boardAPI.post('/boards', board);
+  }
+
+  //TODO: DELETE A BOARD?
+
+  //UPDATE EXISTING  BOARD ???
 
 }

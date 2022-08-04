@@ -69,6 +69,26 @@ export default {
         });
     },
     deleteBoard() {
+      boardsService.deleteBoard(this.boardId).then( response => {
+        if (response.status === 200) {
+          this.$store.commit("DELETE_BOARD", this.boardId);
+          this.$router.push({name: 'Home'});
+        }
+
+      }
+    ).catch(error => {
+
+      if(error.response){
+        this.errorMsg = 'Error Deleting Board. Server did not reported: "' + error.response.statusText;
+
+      }
+      else if(error.request){
+        this.errorMsg = 'Error Deleting Board. Server did not re: '
+      }
+      else if(error.re){
+        this.errorMsg = 'Error Deleting Board. Server did not re: '
+      }
+    })
       
     }
   },

@@ -55,7 +55,7 @@ export default {
     },
   },
   methods: {
-    retrieveBoards() {
+    retrieveBoards(addedBoard=false) {
       boardsService.getBoards().then(response => {
         this.$store.commit("SET_BOARDS", response.data);
         this.isLoading = false;
@@ -64,7 +64,12 @@ export default {
         if (this.$store.state.boards.length > 0) {
 
           // select first board
-          const boardId = response.data[0].id;
+          // const boardId = response.data[0].id;
+
+          //If I just added(a)Board, then use the last board in the array Id value, otherwise use first board (pos 0)
+          const targetBoardPos = (addedBoard)? response.data.length - 1: 0;
+
+          const boardId = response.data[targetBoardPos].id;
 
           // update active board so it is highlighted in nav
           this.$store.commit("SET_ACTIVE_BOARD", boardId);
@@ -77,6 +82,31 @@ export default {
       });
     },
     saveNewBoard() {
+      this.isLoading = true;
+      boardsService.addBoard(this.newBoard).then(response => {
+        if(response.status === 201){
+          this.retrieveBoards(true);
+          
+          this.showAddBoard = false;
+          this.newBoard = {
+            title: '',
+            backgroundColor: this.randomBackgroundColor()
+          };
+        }
+      }).catch(error => {
+        if(error.response){
+          this.errorMsg = "Error submitting new board. Serve responded with: "+ error.response.statusText +"'.";
+        }
+        else if (error.request){
+          this.errorMsg = "Error submitting new board. Server did not respond."
+        }
+        else{
+          this.errorMsg = "Error submitting new board. Request failed";
+        }
+
+        // this.isLoading = false;
+
+      });
 
     },
     randomBackgroundColor() {
