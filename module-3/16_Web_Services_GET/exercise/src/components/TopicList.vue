@@ -10,7 +10,7 @@
 
 <script>
 
-import topicServices from '@/services/TopicServices'
+import topicServices from '../services/TopicServices'
 
 export default {
   name: 'topic-list',
@@ -22,8 +22,10 @@ export default {
   created() {
     topicServices.getTopics().then(response => {
       this.topics = response.date;
+      // console.log(this.topics)
     })
   }
+  
 }
 </script>
 

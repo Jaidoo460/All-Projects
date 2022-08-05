@@ -12,7 +12,7 @@
 
 <script>
 
-import topicServices from '@/services/TopicServices'
+import topicServices from "../services/TopicServices";
 
 export default {
   name: 'topic-details',
@@ -32,7 +32,7 @@ export default {
   created() {
     topicServices.getTopicDetails(this.$route.params.id).then(response => {
       this.topic = response.data
-    })
+    });
   }
 }
 </script>
